@@ -49,12 +49,11 @@ const Header = () => {
 const Body = () => {
   return (
     <div className="restaurant-list">
-      <RestaurantCard />
-      <RestaurantCard />;
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
+      {restaurantList.map((restaurant) => {
+        return (
+          <RestaurantCard {...restaurant?.info} key={restaurant?.info?.id} />
+        );
+      })}
     </div>
   );
 };
@@ -1290,23 +1289,29 @@ const restaurantList = [
     },
   },
 ];
-const RestaurantCard = () => {
+
+const RestaurantCard = ({
+  cloudinaryImageId,
+  name,
+  cuisines,
+  avgRatingString,
+}) => {
   return (
     <div className="restaurant-card">
       <img
         src={
           "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          restaurantList[1].info?.cloudinaryImageId
+          cloudinaryImageId
         }
       />
-      <h2>{restaurantList[1].info?.name}</h2>
-      <h3>{restaurantList[0].info?.cuisines.join(", ")}</h3>
-      <h4>{restaurantList[0].info?.avgRatingString} stars</h4>
+      <h2>{name}</h2>
+      <h3>{cuisines.join(", ")}</h3>
+      <h4>{avgRatingString} stars</h4>
     </div>
   );
 };
 const Footer = () => {
-  return Footer;
+  return <h1>Footer</h1>;
 };
 
 const AppLayout = () => {
