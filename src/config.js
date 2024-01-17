@@ -1,64 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-{
-  /* Header
-        Logo
-            Nav Items
-            cart        
-
-      <Body />
-        searchBar 
-            restaurant List
-            restaurant card
-                name
-                image
-                rating
-                cusines
-
-      <Footer />
-        Footer Links
-        copyright 
-        */
-}
-
-const Title = () => (
-  <a href="/">
-    <img
-      alt="food"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL20AyfGsI59jyaHxmYFBD-bqgWcc3-GEQ5w&usqp=CAU"
-    />
-  </a>
-);
-
-const Header = () => {
-  return (
-    <div className="header">
-      <Title />
-      <div className="navItems">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-const Body = () => {
-  return (
-    <div className="restaurant-list">
-      {restaurantList.map((restaurant) => {
-        return (
-          <RestaurantCard {...restaurant?.info} key={restaurant?.info?.id} />
-        );
-      })}
-    </div>
-  );
-};
-
-const restaurantList = [
+export const restaurantList = [
   {
     info: {
       id: "69447",
@@ -1290,39 +1230,5 @@ const restaurantList = [
   },
 ];
 
-const RestaurantCard = ({
-  cloudinaryImageId,
-  name,
-  cuisines,
-  avgRatingString,
-}) => {
-  return (
-    <div className="restaurant-card">
-      <img
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
-      />
-      <h2>{name}</h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>{avgRatingString} stars</h4>
-    </div>
-  );
-};
-const Footer = () => {
-  return <h1>Footer</h1>;
-};
-
-const AppLayout = () => {
-  return (
-    <>
-      <Header />
-      <Body />
-      <Footer />
-    </>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+export const LOGO_URL =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL20AyfGsI59jyaHxmYFBD-bqgWcc3-GEQ5w&usqp=CAU";
