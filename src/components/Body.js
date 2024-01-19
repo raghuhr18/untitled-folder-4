@@ -3,16 +3,17 @@ import { restaurantList } from "../config";
 import RestaurantCard from "../RestaurantCard";
 import Shimmer from "../Shimmer";
 
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant.info.name.includes(searchText)
+function filterData(searchText, allRestaurants) {
+  const filterData = allRestaurants.filter((restaurant) =>
+    restaurant?.info?.name?.toLowerCase()?.includes(searchText?.toLowerCase())
   );
   return filterData;
 }
 
 const Body = () => {
+  const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
     getRestaurantData();
@@ -24,12 +25,18 @@ const Body = () => {
     );
     const json = await data.json();
 
-    setRestaurants(
+    setAllRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   }
 
-  return restaurants.length === 0 ? (
+  if (!allRestaurants) return null;
+  // if (filteredRestaurants?.length === 0)
+  //   return <h1>No Matching Restaurants Found</h1>;
+  return filteredRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <>
@@ -45,15 +52,15 @@ const Body = () => {
         <button
           className="search-btn"
           onClick={() => {
-            const data = filterData(searchText, restaurants);
-            setRestaurants(data);
+            const data = filterData(searchText, allRestaurants);
+            setFilteredRestaurants(data);
           }}
         >
           Search
         </button>
       </div>
       <div className="restaurant-list">
-        {restaurants.map((restaurant) => {
+        {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant?.info} key={restaurant?.info?.id} />
           );

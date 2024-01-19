@@ -30,3 +30,12 @@ img  {
     flex-direction: row;
     flex-wrap: wrap;
 }
+.shimmerCard{
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    margin: 5px;
+    background-color: lightgray;
+    display: inline-flex;
+    flex-direction: row;
+}
