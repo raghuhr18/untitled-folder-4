@@ -6,13 +6,17 @@
 }
 .navItems>ul {
     display: flex;
+    list-style: none;
     padding: 10px;
 }
 .navItems>ul>li{
     list-style: none;
     padding: 10px;
 }
-img  {
+.navItems>ul>a>li{
+    padding: 10px;
+}
+.header img  {
     width: 95px;;
 }
 .restaurant-card{
