@@ -22,7 +22,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
                 name
                 image
                 rating
-                cusines
+
 
       <Footer />
         Footer Links
