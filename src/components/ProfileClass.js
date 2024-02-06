@@ -6,15 +6,15 @@ class ProfileClass extends React.Component {
     this.state = {
       count: 0,
     };
-    console.log("Constructor");
+    console.log(this.props.name + "- Constructor");
   }
   
   componentDidMount() {
-    console.log("Component Did Mount");
+    console.log(this.props.name + "- Component Did Mount");
   }
   render() {
     const { count } = this.state;
-    console.log("render");
+    console.log(this.props.name + "- render");
     return (
       <div>
         
