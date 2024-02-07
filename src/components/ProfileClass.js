@@ -4,23 +4,42 @@ class ProfileClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      userInfo: {
+        name: "dummy name",
+        location: "",                    
+      }
     };
     console.log(this.props.name + "- Constructor");
   }
   
-  componentDidMount() {
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/raghuhr18");
+    const json = await data.json();
+    console.log(json);
+    this.setState({
+      userInfo: json,
+    });
+    
+    this.timer = setInterval(() => {
+      console.log("say Hello");
+    },1000);
+
     console.log(this.props.name + "- Component Did Mount");
   }
+  componentDidUpdate(prevState, prevProps) {
+    console.log("component did update");
+  }
+  componentWillUnmount() {
+    console.log("component will unmount");
+    clearInterval(this.timer);
+  }
   render() {
-    const { count } = this.state;
     console.log(this.props.name + "- render");
     return (
       <div>
-        
-        <h1>This is profile class component</h1>
-        <h2>{count}</h2>
-        <button onClick={() => {this.setState({count: count+1})}}>Click Here</button>
+        <h2>Name: {this.state.userInfo.name}</h2>
+        <h2>Location: {this.state.userInfo.location}</h2>
+        <h1>This is profile class component {this.props.name}</h1>
       </div>
     )
   }

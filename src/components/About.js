@@ -8,6 +8,7 @@ class About extends Component {
   }
   componentDidMount() {
     console.log("Parent Component Did Mount");
+
   }
   render(){
     console.log("Parent render");
@@ -15,7 +16,7 @@ class About extends Component {
       <>
         <h1>About Us Page</h1>
         <ProfileClass name={"First child"}/>
-        <ProfileClass name={"Second Child"}/>
+
         </>
     )
   }
