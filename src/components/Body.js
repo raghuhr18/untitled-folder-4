@@ -4,6 +4,7 @@ import { restaurantList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 
 
@@ -28,6 +29,12 @@ const Body = () => {
     setFilteredRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+  }
+
+  const isOnline = useOnline();
+
+  if(!isOnline) {
+    return(<h1>Oh No.. seems like You're Offline</h1>)
   }
 
   if (!allRestaurants) return null;
