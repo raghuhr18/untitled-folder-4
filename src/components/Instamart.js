@@ -5,4 +5,4 @@ const Instamart = () => {
         </div>
     )
 }
-export default Instamart
+export default Instamart 

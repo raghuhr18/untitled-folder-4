@@ -3,29 +3,29 @@ import { Link } from "react-router-dom";
 
 const Title = () => (
   <a href="/">
-    <img alt="food" src={LOGO_URL} />
+    <img className="h-28 p-2" alt="food" src={LOGO_URL} />
   </a>
 );
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="flex justify-between bg-gray-300 shadow-md">
       <Title />
       <div className="navItems">
-        <ul>
+        <ul className="flex py-10 px-2 font-bold">
           <Link to="/">
-            <li>Home Page</li>
+            <li className="px-2">Home Page</li>
           </Link>
           <Link to="about">
-            <li>About</li>
+            <li className="px-2">About</li>
           </Link>
           <Link to="contact">
-            <li>Contact</li>
+            <li className="px-2">Contact</li>
           </Link>
           <Link to="instamart">
-            <li>Instamart</li>
+            <li className="px-2">Instamart</li>
           </Link>
-          <li>Cart</li>
+          <li className="px-2">Cart</li>
         </ul>
       </div>
     </div>
