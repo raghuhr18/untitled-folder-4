@@ -8,7 +8,7 @@ import useOnline from "../utils/useOnline";
 
 
 
-const Body = () => {
+const Body = ({user}) => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -70,7 +70,7 @@ const Body = () => {
               to={"/restaurant/" + restaurant?.info?.id}
               key={restaurant?.info?.id}
             >
-              <RestaurantCard {...restaurant?.info} />
+              <RestaurantCard {...restaurant?.info} user={user} />
             </Link>
           );
         })}

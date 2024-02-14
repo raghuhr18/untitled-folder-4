@@ -3,6 +3,7 @@ const RestaurantCard = ({
   name,
   cuisines,
   avgRatingString,
+  user
 }) => {
   return (
     <div className="w-60 shadow-md p-2 m-2 border border-l h-80 bg-pink-100">
@@ -15,6 +16,8 @@ const RestaurantCard = ({
       <h2 className="font-bold text-xl">{name}</h2>
       <h3>{cuisines.join(", ")}</h3>
       <h4>{avgRatingString} stars</h4>
+      <h4>{user.name}</h4>
+      <h4>{user.email}</h4>
     </div>
   );
 };
