@@ -1,5 +1,7 @@
 import { LOGO_URL } from "../config";
 import { Link } from "react-router-dom";
+import userContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const Title = () => (
   <a href="/">
@@ -8,11 +10,15 @@ const Title = () => (
 );
 
 const Header = () => {
+
+  const { user } = useContext(userContext);
   return (
     <div className="flex justify-between bg-gray-300 shadow-md">
       <Title />
+      <div className="py-10 px-2">{user?.name}</div>
       <div className="navItems">
         <ul className="flex py-10 px-2 font-bold">
+
           <Link to="/">
             <li className="px-2">Home Page</li>
           </Link>

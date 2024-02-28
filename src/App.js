@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 
 const About =  lazy(() => import("./components/About"))
 const Instamart = lazy(() => import("./components/Instamart"))
@@ -33,15 +34,18 @@ const Instamart = lazy(() => import("./components/Instamart"))
 }
 
 const AppLayout = () => {
-
-  const [user, setUser] = useState();
+const [user, setUser] = useState({
+  name: "Akshay",
+  email: "akshay@gmail.com"
+})
+ 
 
   return (
-    <>
+    <UserContext.Provider value={{user: user, setUser: setUser}}>
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 const approuter = createBrowserRouter([
@@ -52,10 +56,7 @@ const approuter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body user={{
-          name: "Example",
-          email: "example@gmail.com"
-        }}/>,
+        element: <Body />,
       },
       {
         path: "/about",
