@@ -9,6 +9,8 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const About =  lazy(() => import("./components/About"))
 const Instamart = lazy(() => import("./components/Instamart"))
@@ -41,11 +43,13 @@ const [user, setUser] = useState({
  
 
   return (
-    <UserContext.Provider value={{user: user, setUser: setUser}}>
-      <Header />
-      <Outlet />
-      <Footer />
-    </UserContext.Provider>
+    <Provider store ={store} >
+      <UserContext.Provider value={{user: user, setUser: setUser}}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const approuter = createBrowserRouter([
